@@ -14,11 +14,18 @@
         <div v-if="tasks.length > 0" class="task-list">
             <div v-for="task in tasks" :key="task.id" class="task-item">
                 <span :class="{ completed: task.completed }">{{ task.todo }}</span>
-                <div>
-                    <button @click="toggleTaskCompletion(task)">
-                        {{ task.completed ? 'Desmarcar' : 'Completar' }}
+                <div class="task-actions">
+                    <!-- Botón de completar (verde) -->
+                    <button @click="toggleTaskCompletion(task)" class="btn btn-complete">
+                        <span>Completar</span>
+                        <i class="bi bi-check-circle"></i> <!-- Ícono check-circle -->
                     </button>
-                    <button @click="deleteTask(task)">Eliminar</button>
+                    
+                    <!-- Botón de eliminar (rojo) -->
+                    <button @click="deleteTask(task)" class="btn btn-delete">
+                        <span>Eliminar</span>
+                        <i class="bi bi-trash"></i> <!-- Ícono trash -->
+                    </button>
                 </div>
             </div>
         </div>
@@ -103,8 +110,66 @@ export default {
     border-bottom: 1px solid #eee;
 }
 
+.task-actions {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+/* Estilo de los botones de acción */
+button span {
+    margin-right: 5px;  /* Espacio entre el texto y el ícono */
+}
+
+button i {
+    font-size: 1.5em; /* Tamaño del ícono */
+    color: inherit;   /* Los íconos heredarán el color del botón */
+}
+
+/* Botón de Completar - Verde */
+.btn-complete {
+    color: #28a745; /* Color verde */
+    border: 1px solid #28a745; /* Borde verde */
+}
+
+.btn-complete:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-complete i {
+    color: inherit;
+}
+
+/* Botón de Eliminar - Rojo */
+.btn-delete {
+    color: #dc3545; /* Color rojo */
+    border: 1px solid #dc3545; /* Borde rojo */
+}
+
+.btn-delete:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-delete i {
+    color: inherit;
+}
+
+/* Estilo para el texto tachado en tareas completadas */
 .completed {
     text-decoration: line-through;
     color: gray;
 }
+
 </style>
