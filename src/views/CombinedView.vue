@@ -6,7 +6,15 @@
 </template>
 
 <script>
-   // Esta sección debe permitir agregar tareas nuevas a la vez que extraer las tareas anteriores de la API
+export default {
+    name: "CombinedView",
+    data() {
+        
+    },
+    methods: {
+        
+    },
+};
 </script>
 
 <style scoped>
